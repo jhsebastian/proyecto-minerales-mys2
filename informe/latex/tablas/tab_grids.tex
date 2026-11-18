@@ -1,0 +1,28 @@
+\begin{table}[!t]
+\caption{Hiperparámetros analizados y valores de la malla de cada modelo (120 configuraciones $\times$ 15 pliegues)}
+\label{tab:grids}
+\centering\footnotesize
+\setlength{\tabcolsep}{2.5pt}\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{@{}p{1.95cm} p{2.85cm} p{3.45cm}@{}}
+\toprule
+Modelo & Hiperparámetro & Valores\\
+\midrule
+Reg. logística & $C$ (inverso de la regularización L2) & $10^{-4},10^{-3},\dots,10^{2}$\\
+\addlinespace[1pt]
+$k$-NN & vecinos $k$ & 1, 3, 5, 7, 9, 11, 15, 21\\
+ & pesos & uniformes, por distancia\\
+\addlinespace[1pt]
+Random Forest & n.º de árboles & 100, 300$^{\dagger}$\\
+ & profundidad máxima & 3, 5, 10, sin límite\\
+ & variables por división & $\log_2 p$, $\sqrt p$, $0.1p$, $0.3p$, $0.6p$, $p$\\
+\addlinespace[1pt]
+MLP & capas ocultas & (32), (64), (128), (64,32)\\
+ & penalización L2 $\alpha$ & $10^{-4},10^{-3},\dots,10^{2}$\\
+\addlinespace[1pt]
+SVM & RBF: $C$ & 1, 10, 100, 1000\\
+ & RBF: $\gamma$ & $10^{-5}$, $3\cdot10^{-5}$, $10^{-4}$, $3\cdot10^{-4}$, $10^{-3}$, $10^{-2}$\\
+ & lineal: $C$ & $10^{-4},10^{-3},\dots,1$\\
+\bottomrule
+\end{tabular}
+\par\smallskip\noindent{\scriptsize Configuraciones por modelo: reg. logística 7, $k$-NN 16, Random Forest 40, MLP 28, SVM 29. $p=1835$. $^{\dagger}$300 árboles solo con $\le0.3p$ variables por división (costo). Fijos: LogReg multinomial con L2 y máx. 3000 iteraciones; MLP con ReLU, Adam, tasa $10^{-3}$ y máx. 500 épocas; semilla 2026.}
+\end{table}
