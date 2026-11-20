@@ -100,7 +100,24 @@ pip install -r requirements.txt
 jupyter lab notebooks/proyecto_minerales.ipynb          # o: jupyter notebook ...
 ```
 
-**Ejecutar el cuaderno completo** («Run all») toma unos 20–30 s: por defecto (`FORCE = False`, primera celda de código) reutiliza los resultados costosos guardados en `results/cache/` y vuelve a generar todas las tablas y figuras, así como `informe/latex/numeros.tex` y `informe/latex/tablas/*.tex`. Con `FORCE = True` recalcula todo desde cero con las mismas semillas (del orden de 35 min con 2 núcleos).
+**Ejecutar el cuaderno completo** («Run all») toma menos de un minuto (unos 15 s en un portátil y unos 50 s en Google Colab): por defecto (`FORCE = False`, primera celda de código) reutiliza los resultados costosos guardados en `results/cache/` y vuelve a generar todas las tablas y figuras, así como `informe/latex/numeros.tex` y `informe/latex/tablas/*.tex`. Con `FORCE = True` recalcula todo desde cero con las mismas semillas (del orden de 35 min con 2 núcleos).
+
+**Ejecutar en Google Colab** (sin instalar nada en el equipo). Colab ya trae numpy, pandas, scipy, scikit-learn y matplotlib; el cuaderno se verificó allí con Python 3.13, numpy 2.4 y scikit-learn 1.6.
+
+1. Abrir el cuaderno en Colab: [`proyecto_minerales.ipynb`](https://colab.research.google.com/github/jhsebastian/proyecto-minerales-mys2/blob/main/notebooks/proyecto_minerales.ipynb) (o *Archivo → Abrir cuaderno → GitHub* y escribir `jhsebastian/proyecto-minerales-mys2`).
+2. Insertar una celda de código **antes de todas las demás**, con estas líneas, y ejecutarla sola:
+
+   ```python
+   %cd /content
+   !rm -rf /content/proyecto-minerales-mys2
+   !git clone https://github.com/jhsebastian/proyecto-minerales-mys2.git
+   %cd /content/proyecto-minerales-mys2/notebooks
+   ```
+
+   La última línea que imprime debe ser exactamente `/content/proyecto-minerales-mys2/notebooks`.
+3. Ejecutar todo (*Entorno de ejecución → Ejecutar todo*). Con `FORCE = False` termina en menos de un minuto.
+
+Si el cuaderno ya se había ejecutado desde otra carpeta, o se vuelve a clonar el repositorio, hay que **reiniciar la sesión** (*Entorno de ejecución → Reiniciar sesión*) antes de repetir los pasos 2 y 3: la ruta del proyecto queda fija en la sesión y, si es incorrecta, el cuaderno no encuentra `results/cache/` y recalcula todo (35 min o más).
 
 **Etapas por línea de comandos** (con `--force` se recalcula la etapa pedida):
 
