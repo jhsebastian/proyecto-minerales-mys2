@@ -6,14 +6,17 @@ Proyecto de aula — *Modelos y Simulación de Sistemas II* (Universidad de Anti
 
 Integrantes: Michael Stiven Tabares Tobón, María Fernanda Atencia Oliva, Valeria Vásquez Barragán y Jhon Sebastián Martínez Soto.
 
-Este repositorio contiene el informe en formato IEEE Transactions (PDF y código LaTeX), el cuaderno de Jupyter que reproduce **todas** las cifras, tablas y figuras del informe, y el código que usa el cuaderno.
+Este repositorio contiene el cuaderno de Jupyter que reproduce **todas** las cifras, tablas y figuras de los resultados, el código que usa el cuaderno y, como parte del **Entregable I**, el informe en formato IEEE Transactions (PDF y código LaTeX).
 
-| Entregable | Archivo |
+| Contenido | Archivo |
 |---|---|
-| Informe (PDF, plantilla IEEE Transactions, 8 páginas) | [`informe/informe_ieee.pdf`](informe/informe_ieee.pdf) |
-| Cuaderno que reproduce el informe | [`notebooks/proyecto_minerales.ipynb`](notebooks/proyecto_minerales.ipynb) |
+| Cuaderno que reproduce los resultados | [`notebooks/proyecto_minerales.ipynb`](notebooks/proyecto_minerales.ipynb) |
+| Informe del Entregable I (PDF, plantilla IEEE Transactions, 8 páginas) | [`informe/informe_ieee.pdf`](informe/informe_ieee.pdf) |
 | Fuente LaTeX del informe (Overleaf) | [`informe/latex/`](informe/latex) |
-| Video de sustentación (10 min) | *(enlace pendiente)* |
+
+## Informe (Entregable I)
+
+El informe en formato IEEE Transactions hizo parte del **Entregable I** y se conserva en este repositorio como referencia: el PDF está en [`informe/informe_ieee.pdf`](informe/informe_ieee.pdf) y su fuente LaTeX en [`informe/latex/`](informe/latex). El cuaderno reproduce todas sus cifras, tablas y figuras (la correspondencia sección por sección está en «Correspondencia con la guía del proyecto»), y el propio informe remite a este repositorio en su apartado de disponibilidad.
 
 ## El problema en una línea
 
