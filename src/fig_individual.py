@@ -37,5 +37,5 @@ def make(df):
 
 
 if __name__ == '__main__':
-    import mys2_paths as P
-    F.save(make(joblib.load(P.CACHE / 'stage2_individual.joblib')['df']), 'fig_individual')
+    import mys2_paths as P, mys2_core as C
+    F.save(make(C.load_cache(P.CACHE / 'stage2_individual.joblib')['df']), 'fig_individual')

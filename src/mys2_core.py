@@ -1,6 +1,7 @@
 """Núcleo experimental: validación cruzada sin fuga, IC y mallas de hiperparámetros."""
 import itertools, time, warnings
 import numpy as np
+import joblib
 from joblib import Parallel, delayed
 from scipy import stats
 from sklearn.model_selection import StratifiedKFold
@@ -11,6 +12,35 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, f1_score
+
+
+# ---------------------------------------------------------------------------------------------- caché portable
+# Los DataFrame se guardan como diccionarios de listas simples, para que los .joblib se abran con cualquier versión de
+# pandas (un DataFrame serializado con pandas 3 no se puede abrir con pandas 2 y viceversa). Se asume índice por defecto.
+def pack_cache(obj):
+    import pandas as pd
+    out = {}
+    for k, v in obj.items():
+        if isinstance(v, pd.DataFrame):
+            out[k] = {"__dataframe__": True, "columns": [str(c) for c in v.columns],
+                      "data": {str(c): v[c].tolist() for c in v.columns}}
+        else:
+            out[k] = v
+    return out
+
+
+def unpack_cache(obj):
+    import pandas as pd
+    return {k: (pd.DataFrame(v["data"], columns=v["columns"]) if isinstance(v, dict) and v.get("__dataframe__") else v)
+            for k, v in obj.items()}
+
+
+def load_cache(path):
+    return unpack_cache(joblib.load(path))
+
+
+def dump_cache(obj, path):
+    joblib.dump(pack_cache(obj), path)
 
 SEED = 2026
 N_SPLITS = 5

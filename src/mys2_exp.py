@@ -61,7 +61,7 @@ def run_individual(d, cache_dir, force=False, rho_max=0.95):
     import mys2_data as D
     path = _p(cache_dir, "stage2_individual.joblib")
     if os.path.exists(path) and not force:
-        return joblib.load(path)
+        return C.load_cache(path)
     X, y, role, aug = d["X"], d["y"], d["role"], d["is_aug"]
     dev = (role != "test") & (~aug)
     Xd, yd = X[dev], y[dev]
@@ -95,7 +95,7 @@ def run_individual(d, cache_dir, force=False, rho_max=0.95):
                          n_candidatas=int(cand[m].sum()), n_conservadas=int((~cand[m]).sum())))
     out = dict(df=df, tab=pd.DataFrame(rows), kept=np.array(kept), n_pairs_hi=n_pairs_hi,
                spearman=float(stats.spearmanr(eta2, mi)[0]))
-    joblib.dump(out, path)
+    C.dump_cache(out, path)
     return out
 
 

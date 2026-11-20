@@ -39,7 +39,7 @@ def br(lo, hi, nd=2):
 
 
 def load_all():
-    S = dict(g=joblib.load(OUT + "stage1_final.joblib"), s2=joblib.load(OUT + "stage2_individual.joblib"),
+    S = dict(g=joblib.load(OUT + "stage1_final.joblib"), s2=C.load_cache(OUT + "stage2_individual.joblib"),
              s3=joblib.load(OUT + "stage3_final.joblib"))
     for t in ("sel", "pca", "umap"):
         if os.path.exists(OUT + f"stage4_{t}.joblib"):
